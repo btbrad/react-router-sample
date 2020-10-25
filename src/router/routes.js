@@ -5,6 +5,7 @@ import Home from '../pages/Home'
 import About from '../pages/About'
 import Contact from '../pages/Contact'
 import Login from '../pages/Login'
+import Sample from '../pages/Sample'
 
 const routes = [
   {
@@ -23,6 +24,14 @@ const routes = [
     title: '联系我们',
     path: '/contact',
     render: (props) => <Contact {...props} />,
+    exact: false
+  },
+  {
+    title: '分页',
+    isDynamic: true,
+    path: '/sample/:page',
+    to: '/sample/1',
+    render: (props) => <Sample {...props} />,
     exact: false
   },
   {

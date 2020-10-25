@@ -13,7 +13,11 @@ export default function App() {
   return (
     <div className="app">
       <nav>
-        {routes.map((item, index) => <NavLink to={item.path} exact={item.exact} activeClassName="active" key={index}>{item.title}</NavLink>)}
+        {routes.map((item, index) => {
+          if (item.title === '登录' && user) {
+            return ''
+          }
+          return <NavLink to={item.isDynamic ? item.to : item.path} exact={item.exact} activeClassName="active" key={index}>{item.title}</NavLink>})}
         {user ? (
           <span>{user}<button onClick={() => {setUser(null)}}>登出</button></span>
         ) : ''}

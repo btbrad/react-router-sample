@@ -1,0 +1,12 @@
+.pager {
+  display: flex;
+}
+.pager a{
+  padding: 10px;
+  display: block;
+  text-decoration: none;
+  color: #000;
+}
+.pager a.active {
+  color: #f40;
+}
