@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import { NavLink, Route, Switch } from 'react-router-dom'
+import View404 from './pages/View404'
 
-function App() {
+import './app.css'
+
+import routes from './router/routes'
+
+export default function App() {
+
+  const [user, setUser] = useState(null)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <nav>
+        {routes.map((item, index) => <NavLink to={item.path} exact={item.exact} activeClassName="active" key={index}>{item.title}</NavLink>)}
+        {user ? (
+          <span>{user}<button onClick={() => {setUser(null)}}>登出</button></span>
+        ) : ''}
+      </nav>
+      <div>
+      <Switch>
+        {routes.map((item, index) => <Route path={item.path} exact={item.exact} render={(props) => item.render({...props, user, setUser}) } key={index} />)}
+        <Route component={View404} />
+      </Switch>
+      </div>
     </div>
-  );
+  )
 }
-
-export default App;
