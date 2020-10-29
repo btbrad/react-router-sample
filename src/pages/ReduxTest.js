@@ -1,12 +1,16 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import { addTodo } from '../store/actionCreators'
+import { addTodo, getTopics } from '../store/actionCreators'
 
 function ReduxTest(props) {
 
-  const { list, addTodo } = props
+  const { list, addTodo, getCNodeTopics } = props
 
   const [todo, setTodo] = useState('')
+
+  useEffect(()=>{
+    getCNodeTopics()
+  })
 
   const handleClick = () => {
     if (!todo.length) {
@@ -30,11 +34,12 @@ function ReduxTest(props) {
 }
 
 const mapStateToProps = state => ({
-  list: state.list
+  list: state.list,
 })
 
 const mapDispatchToProps = dispatch => ({
-  addTodo: todo => dispatch(addTodo(todo))
+  addTodo: todo => dispatch(addTodo(todo)),
+  getCNodeTopics: () => dispatch(getTopics())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ReduxTest)
