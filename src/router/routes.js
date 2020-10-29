@@ -6,6 +6,7 @@ import About from '../pages/About'
 import Contact from '../pages/Contact'
 import Login from '../pages/Login'
 import Sample from '../pages/Sample'
+import ReduxTest from '../pages/ReduxTest'
 
 const routes = [
   {
@@ -32,6 +33,12 @@ const routes = [
     path: '/sample/:page',
     to: '/sample/1',
     render: (props) => <Sample {...props} />,
+    exact: false
+  },
+  {
+    title: 'Redux-sample',
+    path: '/redux',
+    render: (props) => <ReduxTest {...props} />,
     exact: false
   },
   {
