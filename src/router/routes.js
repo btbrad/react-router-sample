@@ -33,7 +33,11 @@ const routes = [
     path: '/sample/:page',
     to: '/sample/1',
     render: (props) => <Sample {...props} />,
-    exact: false
+    exact: false,
+    active: (path) => {
+      console.log(1111, path === 'sample')
+      return path === 'sample'
+    }
   },
   {
     title: 'Redux-sample',

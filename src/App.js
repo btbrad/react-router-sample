@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { NavLink, Route, Switch } from 'react-router-dom'
+import { NavLink, Route, Switch, useLocation } from 'react-router-dom'
 import View404 from './pages/View404'
 
 import './app.css'
@@ -9,6 +9,9 @@ import routes from './router/routes'
 export default function App() {
 
   const [user, setUser] = useState(null)
+  console.log(useLocation())
+  const { pathname } = useLocation()
+  console.log(pathname.split('/'))
 
   return (
     <div className="app">
@@ -17,7 +20,7 @@ export default function App() {
           if (item.title === '登录' && user) {
             return ''
           }
-          return <NavLink to={item.isDynamic ? item.to : item.path} exact={item.exact} activeClassName="active" key={index}>{item.title}</NavLink>})}
+          return <NavLink to={item.isDynamic ? item.to : item.path} exact={item.exact} activeClassName="active" key={index} isActive={item.active ? () => item.active(pathname.split('/')[1]) : null}>{item.title}</NavLink>})}
         {user ? (
           <span>{user}<button onClick={() => {setUser(null)}}>登出</button></span>
         ) : ''}
