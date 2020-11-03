@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { NavLink, Route, Switch, useLocation } from 'react-router-dom'
 import View404 from './pages/View404'
 
-import './app.css'
+import './App.css'
 
 import routes from './router/routes'
 
